@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map.Entry;
 import java.util.Properties;
 import javax.swing.JComboBox;
@@ -21,8 +22,8 @@ public class Ventana extends JFrame{
 	private JTextArea txtRes;
 	private JTextArea txtPorcentaje;
 	private Properties propiedades;
-	private FileInputStream english;
-	private FileInputStream spanish;
+	private InputStream english;
+	private InputStream spanish;
 	private JButton btnComenzar;
 	private JButton btnDirectorio;
 	private JButton spanishBtn;
@@ -37,8 +38,8 @@ public class Ventana extends JFrame{
 	public Ventana() {
 	
 		try {
-			english = new FileInputStream("got/src/english.p");
-			spanish = new FileInputStream("got/src/spanish.p");
+			english = Ventana.class.getResourceAsStream("english.p");
+			spanish = Ventana.class.getResourceAsStream("spanish.p");
 			propiedades= new Properties();
 			propiedades.load(spanish);
 		} catch (IOException e) {
@@ -175,7 +176,7 @@ public class Ventana extends JFrame{
 	public void setSpanish() {
 		try {
 			propiedades.load(spanish);
-			spanish = new FileInputStream("got/src/spanish.p");
+			spanish = Ventana.class.getResourceAsStream("spanish.p");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -188,7 +189,7 @@ public class Ventana extends JFrame{
 	public void setEnglish() {
 		try {
 			propiedades.load(english);
-			english = new FileInputStream("got/src/english.p");
+			english = Ventana.class.getResourceAsStream("english.p");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
